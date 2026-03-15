@@ -1,5 +1,6 @@
 const express = require('express');
 const { getDb, save, allRows, getRow } = require('../db');
+const { updateMondayStatus } = require('../monday');
 const router = express.Router();
 
 // GET /api/deliveries — list all, optional ?status= filter
@@ -63,6 +64,15 @@ router.patch('/:id/status', async (req, res) => {
   const changes = db.getRowsModified();
   if (changes === 0) return res.status(404).json({ error: 'Not found' });
   save();
+
+  // Auto-sync to Monday.com if linked
+  const delivery = getRow(db, 'SELECT monday_item_id FROM deliveries WHERE id = ?', [Number(req.params.id)]);
+  if (delivery?.monday_item_id) {
+    updateMondayStatus(delivery.monday_item_id, status).catch(err => {
+      console.error('Monday sync failed:', err.message);
+    });
+  }
+
   res.json({ success: true });
 });
 

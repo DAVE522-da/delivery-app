@@ -39,7 +39,8 @@ async function getDb() {
         driver_id INTEGER REFERENCES drivers(id),
         status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'on_route', 'delayed', 'delivered')),
         recipient_phone TEXT,
-        recipient_name TEXT
+        recipient_name TEXT,
+        monday_item_id TEXT
       )
     `);
 

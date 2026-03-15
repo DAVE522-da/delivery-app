@@ -52,3 +52,19 @@ export async function updateDriverLocation(id, lat, lng) {
   });
   return res.json();
 }
+
+// Monday.com sync
+export async function mondaySync() {
+  const res = await fetch(`${BASE}/monday/sync`, { method: 'POST' });
+  return res.json();
+}
+
+export async function mondayPull() {
+  const res = await fetch(`${BASE}/monday/pull`, { method: 'POST' });
+  return res.json();
+}
+
+export async function mondayStatus() {
+  const res = await fetch(`${BASE}/monday/status`);
+  return res.json();
+}
