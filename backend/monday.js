@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 const MONDAY_API = 'https://api.monday.com/v2';
-const TOKEN = process.env.MONDAY_TOKEN || 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjQwMTQ4Nzg2NiwiYWFpIjoxMSwidWlkIjo2NTE5ODAyNCwiaWFkIjoiMjAyNC0wOC0yNVQwNjozMTo0MC4wMDBaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MjUwOTI5MzksInJnbiI6ImV1YzEifQ.D7kCNrmbi5_CXNGLSy01Iz36DjpDhX-2ds5TAH7yTRU';
+const TOKEN = process.env.MONDAY_TOKEN;
 const BOARD_ID = '5093190297';
 
 // Column IDs
